@@ -1,0 +1,11 @@
+name = "durable-objects-channel"
+compatibility_date = "2024-03-20"
+
+[durable_objects]
+bindings = [
+    { name = "DO", class_name = "ChannelObject" }
+]
+
+[[migrations]]
+tag = "v1" # Should be unique for each entry
+new_classes = ["ChannelObject"]

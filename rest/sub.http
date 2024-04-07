@@ -1,0 +1,6 @@
+# bob subscribes to the test channel
+GET {{host}}/sub?id=test
+
+###
+# alice subscribes to the test channel
+GET {{host}}/sub?id=test

@@ -1,0 +1,18 @@
+# alice send message
+POST {{host}}/channels/test/messages
+Content-Type: application/json
+
+{
+  "user": "alice",
+  "message": "hey bob!"
+}
+
+###
+# bob send message
+POST {{host}}/channels/test/messages
+Content-Type: application/json
+
+{
+  "user": "bob",
+  "message": "hey alice!"
+}

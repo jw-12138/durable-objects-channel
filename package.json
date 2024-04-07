@@ -1,0 +1,15 @@
+{
+  "name": "durable-objects-channel",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "wrangler dev src/index.js --port 6042"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20240320.1",
+    "hono": "^4.1.5",
+    "nanoid": "3",
+    "wrangler": "^3.39.0"
+  }
+}
