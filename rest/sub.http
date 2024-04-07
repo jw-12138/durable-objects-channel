@@ -1,2 +1,2 @@
 # subscribes to the test channel
-GET {{host}}/sub?id=test&apiKey={{apiKey}}
+GET {{host}}/sub?channel=test&apiKey={{apiKey}}

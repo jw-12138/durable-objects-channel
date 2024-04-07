@@ -36,7 +36,7 @@ app.post('/channels/:channel/messages', async (ctx) => {
 
 app.get('/sub', async (ctx) => {
   let _do = ctx.env.DO
-  let channel = ctx.req.query('id')
+  let channel = ctx.req.query('channel')
   let apiKeyInQuery = ctx.req.query('apiKey')
 
   if (ctx.env.API_KEY !== apiKeyInQuery) {
