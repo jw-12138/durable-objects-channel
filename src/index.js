@@ -9,6 +9,12 @@ app.use('*', cors())
 app.use('*', logger())
 
 app.post('/channels/:channel/messages', async (ctx) => {
+  let apiKeyInHeader = ctx.req.header('x-api-key')
+
+  if (ctx.env.API_KEY !== apiKeyInHeader) {
+    return new Response('Unauthorized', {status: 401})
+  }
+
   let _do = ctx.env.DO
   let data = await ctx.req.json()
 
@@ -30,14 +36,19 @@ app.post('/channels/:channel/messages', async (ctx) => {
 
 app.get('/sub', async (ctx) => {
   let _do = ctx.env.DO
-  let channel = ctx.req.queries('id')[0]
+  let channel = ctx.req.query('id')
+  let apiKeyInQuery = ctx.req.query('apiKey')
+
+  if (ctx.env.API_KEY !== apiKeyInQuery) {
+    return new Response('Unauthorized', {status: 401})
+  }
 
   let id = _do.idFromName(channel)
   let stub = _do.get(id)
 
   let res = await stub.fetch('http://do/sub', {
     headers: {
-      "Upgrade": "websocket"
+      'Upgrade': 'websocket'
     }
   })
 

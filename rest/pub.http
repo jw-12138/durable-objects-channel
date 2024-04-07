@@ -1,6 +1,7 @@
 # alice send message
 POST {{host}}/channels/test/messages
 Content-Type: application/json
+X-Api-Key: {{apiKey}}
 
 {
   "user": "alice",
@@ -11,6 +12,7 @@ Content-Type: application/json
 # bob send message
 POST {{host}}/channels/test/messages
 Content-Type: application/json
+X-Api-Key: {{apiKey}}
 
 {
   "user": "bob",

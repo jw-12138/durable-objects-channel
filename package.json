@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "wrangler dev src/index.js --port 6042"
+    "dev": "wrangler dev src/index.js --port 6042",
+    "deploy": "wrangler deploy --minify src/index.js",
+    "tail": "wrangler tail durable-objects-channel"
   },
   "dependencies": {
     "@cloudflare/workers-types": "^4.20240320.1",
