@@ -1,4 +1,20 @@
-# What is this?
+# ⚠️ Production Cost Warning
+
+This project uses Cloudflare Durable Objects to coordinate real-time pub/sub communication.
+
+It works well as a prototype, but can be very expensive in production. Based on Cloudflare’s own cost examples:
+- Just 100 channels with 50 users each for 8 hours a day can cost $138+ per month
+- A fully active system with 1000s of users can easily exceed $500/month
+- Durable Objects are billed based on:
+  - Wall-clock compute duration (charged for every second a DO is alive)
+  - WebSocket connection requests
+  - Incoming WebSocket messages (billed 20:1)
+
+See Cloudflare’s [official Durable Objects pricing docs](https://developers.cloudflare.com/durable-objects/platform/pricing/) for full details.
+
+---
+
+## What is this?
 
 This is a pub/sub module made with Cloudflare Durable Objects.  
 
