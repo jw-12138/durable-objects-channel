@@ -58,13 +58,35 @@ app.get('/sub', async (ctx) => {
 
   return new Response(new ReadableStream({
     start(controller) {
+      let isClosed = false
+
       ws.addEventListener('message', function (event) {
+        if (isClosed) {
+          return
+        }
         controller.enqueue(new TextEncoder().encode(`data: ${event.data}\n\n`))
       })
 
       ws.addEventListener('close', function (event) {
+        isClosed = true
         controller.close()
       })
+
+      ws.addEventListener('error', function () {
+        isClosed = true
+        try {
+          controller.error(new Error('WebSocket error'))
+        } catch (e) {
+          controller.close()
+        }
+      })
+    },
+    cancel() {
+      try {
+        ws.close()
+      } catch (e) {
+        console.log(e)
+      }
     }
   }), {
     status: 200,
